@@ -1,0 +1,33 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { Router, Route, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+import gameStore from './client/stores/gameStore';
+import loginForm from './client/components/forms/login';
+import Styles from './stylesheets/main.scss';
+
+const el = document.getElementById('gameContainer');
+const store = gameStore();
+const history = syncHistoryWithStore(browserHistory, store);
+
+let routes = (
+  <Route handler={ ({ children }) => children }>
+    <Route
+      path="/"
+      name="login"
+      component={loginForm}
+    />
+  </Route>
+);
+
+
+ReactDOM.render(
+  <Provider store={store}>
+    <div className='wrapper'>
+      <Router history={history} routes={routes} />
+    </div>
+  </Provider>,
+  el
+);
+
