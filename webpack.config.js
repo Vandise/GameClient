@@ -26,7 +26,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.jsx?$/,    loader: 'react-hot!babel', include: path.join(__dirname, 'src'), exclude: '/node_modules/' },
+      { test: /\.jsx?$/,    loader: 'react-hot!babel?plugins[]=transform-decorators-legacy', include: path.join(__dirname, 'src'), exclude: '/node_modules/' },
       { test: /\.scss$/,    loader: 'style!css!sass' },
       { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
     ]
