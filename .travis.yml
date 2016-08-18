@@ -6,6 +6,6 @@ cache:
     - node_modules
 addons:
   code_climate:
-    repo_token: 64d8ca87e3e7cdbe2fe0f00141ca55141e78fb32db02acc4a981cc281ad590f2
+    repo_token: afda4d694c2dccd00e31f727255546cad8c7de98ee2d379019080f23f0490688
 before_install: npm install -g codeclimate-test-reporter
 after_success: npm run cover && ./node_modules/.bin/nyc report --reporter=text-lcov | codeclimate-test-reporter
