@@ -2,29 +2,39 @@ import { CS_CONNECT } from '../constants/actions';
 import * as clientSettings from '../constants/client';
 import io from 'socket.io-client';
 
-const csMiddleware = () => {
-  let socket = null;
+const csMiddleware = (
+  initialSocket = null,
+  initialConnect = null,
+  initialEvent = null) => {
+
+  let socket = initialSocket;
+  let onConnect = initialConnect;
+  let onEvent = initialEvent;
 
   const opts = {
     transports: ['websocket'],
   };
 
-  const onConnect = (store) => data => {
-    console.log('Connected');
-  };
+  if (onConnect === null) {
+    onConnect = (store) => data => {
+      // console.log('Connected');
+    };
+  }
 
-  const onEvent = (store, socket) => (event, data) => {
-    console.log('On Event Caught');
-    console.log(event, data);
-    // go through message types and dispatch
-  };
+  if (onEvent === null) {
+    onEvent = (store, socket) => (event, data) => {
+      // console.log('On Event Caught');
+      // console.log(event, data);
+      // go through message types and dispatch
+    };
+  } else {
+    onEvent = (store, socket) => initialEvent;
+  }
 
   return store => next => action => {
     switch (action.type) {
 
       case CS_CONNECT:
-        console.log('Caught CS connect request');
-
         if (socket !== null) {
           socket.close();
         }
@@ -58,3 +68,4 @@ const csMiddleware = () => {
 };
 
 export default csMiddleware();
+export { csMiddleware as testCSMiddleware };
