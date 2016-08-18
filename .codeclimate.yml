@@ -1,0 +1,13 @@
+languages:
+  JavaScript: true
+engines:
+  eslint:
+    enabled: true
+  csslint:
+    enabled: true
+exclude_paths:
+  - "src/static/*"
+  - "src/stylesheets/*"
+  - "webpack.config.js"
+  - "webpack.production.config.js"
+  - "gulpfile.js"
