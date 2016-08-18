@@ -6,6 +6,8 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import gameStore from './client/stores/gameStore';
 import loginForm from './client/components/forms/login';
 import serverSelect from './client/containers/serverSelect';
+
+// eslint-disable-next-line no-unused-vars
 import Styles from './stylesheets/main.scss';
 
 const el = document.getElementById('gameContainer');

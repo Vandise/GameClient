@@ -18,13 +18,12 @@ const reducers = combineReducers({
 });
 
 export default (state = initialState) => {
-
   const store = createStore(reducers, state,
     applyMiddleware(thunk, csMiddleware)
   );
 
   store.subscribe(() => {
-    console.log('Update Game State', store.getState());
+    // console.log('Update Game State', store.getState());
   });
 
   return store;

@@ -3,11 +3,10 @@ import * as clientSettings from '../constants/client';
 import io from 'socket.io-client';
 
 const csMiddleware = () => {
-
   let socket = null;
 
   const opts = {
-    transports: ['websocket']
+    transports: ['websocket'],
   };
 
   const onConnect = (store) => data => {
@@ -21,8 +20,7 @@ const csMiddleware = () => {
   };
 
   return store => next => action => {
-
-    switch(action.type) {
+    switch (action.type) {
 
       case CS_CONNECT:
         console.log('Caught CS connect request');
@@ -50,7 +48,7 @@ const csMiddleware = () => {
         socket.on('connect', onConnect(store));
 
         // mock message
-        //socket.emit('authenticate_client', {host: 'localhost', port: '55901'});
+        // socket.emit('authenticate_client', {host: 'localhost', port: '55901'});
         break;
 
       default:

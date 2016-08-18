@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import * as loginActions from '../../actions/loginActions';
+
+// eslint-disable-next-line no-unused-vars
 import Styles from '../../../stylesheets/components/forms/login.scss';
 
 @connect((store) => {
@@ -34,21 +36,34 @@ export default class LoginForm extends React.Component {
           <div className="input-container">
             <label htmlFor="account">
               <div className="label-text">Account</div>
-              <input type="text" name="account" ref="account" />
+              <input id="account" type="text" name="account" ref="account" />
             </label>
           </div>
           <div className="input-container">
             <label htmlFor="password">
               <div className="label-text">Password</div>
-              <input type="password" name="password" ref="password" />
+              <input
+                id="password"
+                type="password"
+                name="password"
+                ref="password"
+              />
             </label>
           </div>
           <div className="user-actions">
-            <a className="button red" onClick={this.loginAttempt}>Ok</a>
+            <a
+              id="login"
+              className="button red"
+              onClick={this.loginAttempt}>Ok
+            </a>
             <a to="/" className="button red">Cancel</a>
           </div>
         </div>
       </div>
     );
   }
+}
+
+LoginForm.propTypes = {
+  dispatch: React.PropTypes.func,
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { requestLogin } from '../actions/connectServerActions';
+import { connectCS } from '../actions/connectServerActions';
 import { connect } from 'react-redux';
 
 @connect((store) => {
@@ -11,11 +11,14 @@ import { connect } from 'react-redux';
 export default class ServerSelect extends React.Component {
 
   componentWillMount() {
-    this.props.dispatch(requestLogin());
+    this.props.dispatch(connectCS());
   }
 
   render() {
-    console.log(this.props.servers);
     return null;
   }
+}
+
+ServerSelect.propTypes = {
+  dispatch: React.PropTypes.func,
 };
