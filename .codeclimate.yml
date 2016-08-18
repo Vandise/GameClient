@@ -1,10 +1,19 @@
 languages:
   JavaScript: true
 engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+  fixme:
+    enabled: true
   eslint:
     enabled: true
-  csslint:
-    enabled: true
+ratings:
+  paths:
+  - "**.js"
+  - "**.jsx"
 exclude_paths:
   - "src/static/*"
   - "src/stylesheets/*"
