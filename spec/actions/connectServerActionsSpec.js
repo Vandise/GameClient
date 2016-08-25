@@ -5,7 +5,7 @@ describe('Connect Server Actions', () => {
   it('Should create an action to request a connection', () => {
     const expectedAction = {
       type: types.CS_CONNECT,
-      data: {
+      payload: {
         host: 'local',
         port: 1234,
       },

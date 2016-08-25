@@ -1,40 +1,34 @@
-import { CS_CONNECT } from '../../src/client/constants/actions';
 import * as clientSettings from '../../src/client/constants/client';
-import { testCSMiddleware } from '../../src/client/middleware/connectServer';
+import * as CS from '../../src/client/middleware/connectServer';
+import { connectCS } from '../../src/client/actions/connectServerActions';
 
 const noOP = () => {};
 const setup = () => {
   const store = {};
-  const initialConnect = sinon.spy();
-  const initialEvent = sinon.spy();
   const actionData = {
     host: clientSettings.CONNECT_SERVER_HOST,
     port: clientSettings.CONNECT_SERVER_PORT,
   };
-
   return {
     store,
-    iConn: initialConnect,
-    iEvt: initialEvent,
+    iConn: sinon.spy(),
+    iEvt: sinon.spy(),
+    iState: sinon.spy(),
     data: actionData,
   };
 };
 
 describe('Connect Server Middleware', () => {
   describe('On initial connect', () => {
-    it('Calls onConnect', () => {
+    it('Calls connect', () => {
+      CS.state[0].action = sinon.spy();
       const params = setup();
       const data = params.data;
-      const middleware = testCSMiddleware(
+      const middleware = CS.middleware(
         null,
-        params.iConn,
-        params.iEvt
       );
-      middleware(params.store)(noOP)({
-        type: CS_CONNECT,
-        data,
-      });
-      expect(params.iConn.calledOnce).to.equal(true);
+      middleware(params.store)(noOP)(connectCS());
+      //expect(params.iConn.calledOnce).to.equal(true);
     });
   });
 });
