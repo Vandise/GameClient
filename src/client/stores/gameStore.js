@@ -8,7 +8,7 @@ import csMiddleware from '../middleware/connectServer';
 const initialState = {
   user: { username: null },
   routing: {},
-  servers: [],
+  servers: {},
 };
 
 const reducers = combineReducers({

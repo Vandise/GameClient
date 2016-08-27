@@ -28,7 +28,7 @@ describe('Connect Server Middleware', () => {
         null,
       );
       middleware(params.store)(noOP)(connectCS());
-      //expect(params.iConn.calledOnce).to.equal(true);
+      // expect(params.iConn.calledOnce).to.equal(true);
     });
   });
 });

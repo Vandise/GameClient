@@ -1,4 +1,4 @@
-import { CS_CONNECT } from '../constants/actions';
+import { CS_CONNECT } from '../constants/messages/connectServer';
 import * as CS from './connectServer/';
 import socketMiddleware from 'redux-socket.io-middleware';
 

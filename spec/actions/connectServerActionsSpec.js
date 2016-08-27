@@ -1,4 +1,4 @@
-import * as types from '../../src/client/constants/actions';
+import * as types from '../../src/client/constants/messages/connectServer';
 import { connectCS } from '../../src/client/actions/connectServerActions';
 
 describe('Connect Server Actions', () => {

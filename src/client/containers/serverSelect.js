@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { connectCS } from '../actions/connectServerActions';
 import { connect } from 'react-redux';
 
