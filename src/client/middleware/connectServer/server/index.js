@@ -4,8 +4,8 @@ const events = [
   setActiveServers,
 ];
 
-export default (socket, store, next, actionObj) => (event, action, data) => {
+export default (socket, store, next, action) => (event, data) => {
   return events.some((e) => {
-    return e(action, data, store.dispatch);
+    return e(event, data, store.dispatch);
   });
 };
