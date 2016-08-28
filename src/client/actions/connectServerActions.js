@@ -17,7 +17,7 @@ export function getActiveServers() {
   };
 }
 
-export function setActiveServers(servers = []) {
+export function setActiveServers(servers = {}) {
   return {
     type: types.SET_ACTIVE_SERVERS,
     payload: servers,

@@ -8,7 +8,7 @@ export const connectAction = CS_CONNECT;
 export const state = CS.state;
 export const middleware = socketMiddleware;
 
-export default socketMiddleware(
+export default middleware(
   null,
   CS.client,
   CS.server,

@@ -20,3 +20,12 @@ chai.use(sinonChai);
 global.expect = chai.expect;
 global.sinon = sinon;
 global.chai = chai;
+global.noOP = () => {};
+global.mockServerEvent = (middleware, action, store) => {
+  return middleware.server(
+    null,
+    store,
+    noOP,
+    null
+  )(action.type, action.payload);
+};
