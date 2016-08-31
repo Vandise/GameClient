@@ -17,9 +17,9 @@ const reducers = combineReducers({
   routing: routerReducer,
 });
 
-export default (state = initialState) => {
+export default (state = initialState, cs = csMiddleware) => {
   const store = createStore(reducers, state,
-    applyMiddleware(thunk, csMiddleware)
+    applyMiddleware(thunk, cs)
   );
 
   store.subscribe(() => {

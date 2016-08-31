@@ -1,8 +1,8 @@
 import * as types from '../../src/client/constants/messages/connectServer';
-import { connectCS } from '../../src/client/actions/connectServerActions';
+import * as actions from '../../src/client/actions/connectServerActions';
 
 describe('Connect Server Actions', () => {
-  it('Should create an action to request a connection', () => {
+  it('Creates an action to request a connection', () => {
     const expectedAction = {
       type: types.CS_CONNECT,
       payload: {
@@ -10,6 +10,23 @@ describe('Connect Server Actions', () => {
         port: 1234,
       },
     };
-    expect(connectCS('local', 1234)).to.eql(expectedAction);
+    expect(actions.connectCS('local', 1234)).to.eql(expectedAction);
+  });
+  it('Creates an action to retrieve a server list', () => {
+    const expectedAction = {
+      type: types.GET_ACTIVE_SERVERS,
+      payload: false,
+    };
+    expect(actions.getActiveServers()).to.eql(expectedAction);
+  });
+  it('Creates an action to set a server list', () => {
+    const host = {
+      name: 'Host-1',
+    }
+    const expectedAction = {
+      type: types.SET_ACTIVE_SERVERS,
+      payload: host,
+    };
+    expect(actions.setActiveServers(host)).to.eql(expectedAction);
   });
 });

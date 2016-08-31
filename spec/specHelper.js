@@ -21,6 +21,11 @@ global.expect = chai.expect;
 global.sinon = sinon;
 global.chai = chai;
 global.noOP = () => {};
+global.mockClientSocket = () => {
+  return {
+    emit: sinon.spy(),
+  };
+};
 global.mockServerEvent = (middleware, action, store) => {
   return middleware.server(
     null,
