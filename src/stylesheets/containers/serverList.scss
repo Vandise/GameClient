@@ -1,0 +1,47 @@
+.server-list-container {
+  position: absolute;
+  top: 25%;
+  left: 10%;
+}
+
+.host-name {
+  position: relative;
+}
+
+.server-list {
+  li {
+    list-style-type: none;
+    ul {
+      display: none;
+      position: absolute;
+      left: 130px;
+      top: 0px;
+    }
+    &:hover ul {
+      display: block;
+    }
+  }
+  > li {
+    background-color: #42394a;
+    width: 150px;
+    text-align: center;
+    padding: 0.5em;
+    margin-bottom: 1em;
+  }
+  ul li {
+    width: 150px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    background-color: #42394a;
+    &:hover {
+      position: relative;
+      background-color: #6679e9;
+    }
+    a {
+      color: white;
+      display: inline-block;
+      padding: 5px 15px;
+      text-decoration: none;
+    }
+  }
+}

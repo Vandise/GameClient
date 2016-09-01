@@ -55,7 +55,7 @@ export default class LoginForm extends React.Component {
               id="login"
               className="button red"
               onClick={this.loginAttempt}
-    >Ok
+            >Ok
             </a>
             <a to="/" className="button red">Cancel</a>
           </div>
