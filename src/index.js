@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import gameStore from './client/stores/gameStore';
+import MessageModal from './client/components/modals/messageModal';
 import loginForm from './client/components/forms/login';
 import serverSelect from './client/containers/serverSelect';
 
@@ -33,6 +34,7 @@ let routes = (
 ReactDOM.render(
   <Provider store={store}>
     <div className="wrapper">
+      <MessageModal />
       <Router history={history} routes={routes} />
     </div>
   </Provider>,
