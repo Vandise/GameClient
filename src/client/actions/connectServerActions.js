@@ -23,3 +23,10 @@ export function setActiveServers(servers = {}) {
     payload: servers,
   };
 }
+
+export function validateClientAttempt(server = {}) {
+  return {
+    type: types.VALIDATE_CLIENT_ATTEMPT,
+    payload: server,
+  };
+}

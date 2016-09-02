@@ -10,7 +10,7 @@ export function closeModal() {
       options: [],
     },
   };
-};
+}
 
 export function displayModal(message, statusCode = 1, options = []) {
   return {
@@ -22,4 +22,4 @@ export function displayModal(message, statusCode = 1, options = []) {
       closed: false,
     },
   };
-};
+}

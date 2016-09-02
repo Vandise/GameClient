@@ -34,3 +34,14 @@ global.mockServerEvent = (middleware, action, store) => {
     null
   )(action.type, action.payload);
 };
+global.getSocketEvent = (events, eventName) => {
+  let event = null;
+  let i = 0;
+  for (i in events) {
+    if (events[i].action === eventName) {
+      event = events[i].dispatch;
+      break;
+    }
+  }
+  return event;
+};

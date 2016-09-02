@@ -25,7 +25,7 @@ export class ServerSelect extends React.Component {
                       return (
                         <li key={server.name}>
                           <a className="sub-server"
-                            onClick={()=> true}
+                            onClick={() => true}
                           >
                             <span className="server-name">
                               {server.name}

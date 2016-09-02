@@ -22,7 +22,7 @@ describe('Connect Server Actions', () => {
   it('Creates an action to set a server list', () => {
     const host = {
       name: 'Host-1',
-    }
+    };
     const expectedAction = {
       type: types.SET_ACTIVE_SERVERS,
       payload: host,

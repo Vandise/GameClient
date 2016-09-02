@@ -9,14 +9,14 @@ export class MessageModal extends React.Component {
     const modal = this.props.modal;
     if (!modal.closed) {
       return (
-        <div className='message-modal'>
-          <div className='modal-header'>
+        <div className="message-modal">
+          <div className="modal-header">
             Status Code: {modal.statusCode}
           </div>
-          <div className='modal-body'>
+          <div className="modal-body">
             <p>{modal.message}</p>
           </div>
-          <div className='modal-footer'>
+          <div className="modal-footer">
             (No options)
           </div>
         </div>

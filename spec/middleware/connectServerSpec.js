@@ -8,8 +8,19 @@ const setup = () => {
   const store = {
     dispatch,
   };
+  const mockData = {
+    'Host-1': [
+      { name: 'Server 1' },
+    ],
+  };
+  const data = {
+    type: events.GET_ACTIVE_SERVERS,
+    payload: mockData,
+  };
   return {
     store,
+    data,
+    mockData,
   };
 };
 
@@ -18,21 +29,19 @@ describe('Connect Server Middleware', () => {
     describe('GET_ACTIVE_SERVERS', () => {
       it('Dispatches a list of servers', () => {
         const init = setup();
-        const mockData = {
-          'Host-1': [
-            { name: 'Server 1' }
-          ],
-        };
         mockServerEvent(CS,
-          {
-            type: events.GET_ACTIVE_SERVERS,
-            payload: mockData,
-          },
+          init.data,
           init.store
         );
         const arg = init.store.dispatch.lastCall.args[0];
-        expect(arg.payload).to.eql(mockData);
+        expect(arg.payload).to.eql(init.mockData);
       });
+    });
+    it('Closes the message modal', () => {
+      const init = setup();
+      mockServerEvent(CS, init.data, init.store);
+      const arg = init.store.dispatch.firstCall.args[0];
+      expect(arg.type).to.equal('CLOSE_MODAL');
     });
   });
   describe('getActiveServers', () => {
@@ -42,6 +51,26 @@ describe('Connect Server Middleware', () => {
       const store = gameStore({}, middleware);
       const expected = [events.GET_ACTIVE_SERVERS, false];
       store.dispatch(actions.getActiveServers());
+      expect(socket.emit.lastCall.args).to.eql(expected);
+    });
+    it('Displays the message modal', () => {
+      const event = getSocketEvent(CS.client, events.GET_ACTIVE_SERVERS);
+      const socket = mockClientSocket();
+      const store = {};
+      store.dispatch = sinon.spy();
+      event(socket, store, {});
+      const arg = store.dispatch.firstCall.args[0];
+      expect(arg.type).to.equal('DISPLAY_MODAL');
+    });
+  });
+  describe('validateClientAttempt', () => {
+    it('Attempts to connect to the specified game server', () => {
+      const socket = mockClientSocket();
+      const middleware = CS.middleware(socket, CS.client);
+      const store = gameStore({}, middleware);
+      const server = { host: 'localhost', port: '8080' };
+      const expected = [events.VALIDATE_CLIENT_ATTEMPT, server];
+      store.dispatch(actions.validateClientAttempt(server));
       expect(socket.emit.lastCall.args).to.eql(expected);
     });
   });
