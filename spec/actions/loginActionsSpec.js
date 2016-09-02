@@ -2,7 +2,7 @@ import * as types from '../../src/client/constants/actions';
 import { requestLogin } from '../../src/client/actions/loginActions';
 
 describe('Login Actions', () => {
-  it('Should create an action to request a login', () => {
+  it('Creates an action to request a login', () => {
     const expectedAction = {
       type: types.LOGIN_ATTEMPT,
       data: {
