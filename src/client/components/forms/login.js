@@ -2,20 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import * as loginActions from '../../actions/loginActions';
+import { connectGS } from '../../actions/gameServerActions';
 
 // eslint-disable-next-line no-unused-vars
 import Styles from '../../../stylesheets/components/forms/login.scss';
 
-@connect((store) => {
-  return {
-    user: store.user,
-  };
-})
 export default class LoginForm extends React.Component {
 
   constructor(props) {
     super(props);
     this.loginAttempt = this.loginAttempt.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.dispatch(
+      connectGS(this.props.gameServer)
+    );
   }
 
   loginAttempt() {
@@ -68,3 +70,12 @@ export default class LoginForm extends React.Component {
 LoginForm.propTypes = {
   dispatch: React.PropTypes.func,
 };
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    gameServer: state.gameServer,
+  };
+};
+
+export default connect(mapStateToProps)(LoginForm);

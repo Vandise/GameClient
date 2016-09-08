@@ -6,6 +6,7 @@ import serverReducer from '../reducers/serverReducer';
 import messageModalReducer from '../reducers/messageModalReducer';
 import gameServerReducer from '../reducers/gameServerReducer';
 import csMiddleware from '../middleware/connectServer';
+import gsMiddleware from '../middleware/gameServer';
 
 const initialState = {
   user: { username: null },
@@ -26,13 +27,13 @@ const reducers = combineReducers({
   gameServer: gameServerReducer,
 });
 
-export default (state = initialState, cs = csMiddleware) => {
+export default (state = initialState, cs = csMiddleware, gs = gsMiddleware) => {
   const store = createStore(reducers, state,
-    applyMiddleware(thunk, cs)
+    applyMiddleware(thunk, cs, gs)
   );
 
   store.subscribe(() => {
-    // console.log('Update Game State', store.getState());
+    //console.log('Update Game State', store.getState());
   });
 
   return store;

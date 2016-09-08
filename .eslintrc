@@ -14,5 +14,14 @@
     "max-len": [1, 80, 4],
     "radix": 0,
     "arrow-body-style": 0,
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true,
+      "modules": true
+    },
+    "sourceType": "module"
   }
 }
