@@ -5,7 +5,7 @@ import { displayModal } from '../../../actions/modalActions';
 import debug from '../../../util/console';
 
 const dispatch = (socket, store, action) => {
-  debug('Validating client.');
+  debug('Validating client.', action.payload);
   store.dispatch(displayModal(modal.CONNECTING_GS));
   socket.emit(action.type, action.payload);
 };

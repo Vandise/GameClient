@@ -68,7 +68,7 @@ describe('Connect Server Middleware', () => {
       const socket = mockClientSocket();
       const middleware = CS.middleware(socket, CS.client);
       const store = gameStore({}, middleware);
-      const server = { host: 'localhost', port: '8080' };
+      const server = { ip: 'localhost', port: '8080', version: '0.0.1' };
       const expected = [events.VALIDATE_CLIENT_ATTEMPT, server];
       store.dispatch(actions.validateClientAttempt(server));
       expect(socket.emit.lastCall.args).to.eql(expected);

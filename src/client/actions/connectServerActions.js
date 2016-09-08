@@ -1,5 +1,8 @@
 import * as types from '../constants/messages/connectServer';
-import { CONNECT_SERVER_HOST, CONNECT_SERVER_PORT } from '../constants/client';
+import {
+  CONNECT_SERVER_HOST,
+  CONNECT_SERVER_PORT,
+  CLIENT_VERSION } from '../constants/client';
 
 export
 function connectCS(host = CONNECT_SERVER_HOST, port = CONNECT_SERVER_PORT) {
@@ -27,6 +30,10 @@ export function setActiveServers(servers = {}) {
 export function validateClientAttempt(server = {}) {
   return {
     type: types.VALIDATE_CLIENT_ATTEMPT,
-    payload: server,
+    payload: {
+      host: server.ip,
+      port: server.port,
+      version: CLIENT_VERSION,
+    },
   };
 }

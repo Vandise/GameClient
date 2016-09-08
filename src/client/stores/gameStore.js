@@ -4,6 +4,7 @@ import { routerReducer } from 'react-router-redux';
 import userReducer from '../reducers/userReducer';
 import serverReducer from '../reducers/serverReducer';
 import messageModalReducer from '../reducers/messageModalReducer';
+import gameServerReducer from '../reducers/gameServerReducer';
 import csMiddleware from '../middleware/connectServer';
 
 const initialState = {
@@ -22,6 +23,7 @@ const reducers = combineReducers({
   servers: serverReducer,
   routing: routerReducer,
   modal: messageModalReducer,
+  gameServer: gameServerReducer,
 });
 
 export default (state = initialState, cs = csMiddleware) => {

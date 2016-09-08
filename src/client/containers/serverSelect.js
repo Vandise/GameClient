@@ -1,5 +1,9 @@
 import React from 'react';
-import { connectCS } from '../actions/connectServerActions';
+import {
+  connectCS,
+  validateClientAttempt,
+} from '../actions/connectServerActions';
+import { setGameServer } from '../actions/gameServerActions';
 import { connect } from 'react-redux';
 
 // eslint-disable-next-line no-unused-vars
@@ -7,8 +11,20 @@ import Styles from '../../stylesheets/containers/serverList';
 
 export class ServerSelect extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.validateClient = this.validateClient.bind(this);
+  }
+
   componentWillMount() {
     this.props.dispatch(connectCS());
+  }
+
+  validateClient(server) {
+    this.props.dispatch(setGameServer(server));
+    this.props.dispatch(
+      validateClientAttempt(server)
+    );
   }
 
   render() {
@@ -25,7 +41,7 @@ export class ServerSelect extends React.Component {
                       return (
                         <li key={server.name}>
                           <a className="sub-server"
-                            onClick={() => true}
+                            onClick={(e) => this.validateClient(server)}
                           >
                             <span className="server-name">
                               {server.name}

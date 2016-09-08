@@ -1,8 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { closeModal } from '../../actions/modalActions';
 
 // eslint-disable-next-line no-unused-vars
 import Styles from '../../../stylesheets/components/modals/message';
+
+const options = {
+  Ok: closeModal,
+};
 
 export class MessageModal extends React.Component {
   render() {
@@ -17,7 +22,19 @@ export class MessageModal extends React.Component {
             <p>{modal.message}</p>
           </div>
           <div className="modal-footer">
-            (No options)
+            <div>
+              {modal.options.map((opt) => {
+                return (
+                  <a
+                    key={`opt-${opt}`}
+                    className={'button red'}
+                    onClick={() => this.props.dispatch(options[opt]())}
+                  >
+                    {opt}
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
       );
@@ -27,6 +44,7 @@ export class MessageModal extends React.Component {
 }
 
 MessageModal.propTypes = {
+  dispatch: React.PropTypes.func,
   modal: React.PropTypes.object,
 };
 
