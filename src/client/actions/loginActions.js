@@ -1,4 +1,4 @@
-import { LOGIN_ATTEMPT } from '../constants/actions';
+import { LOGIN_ATTEMPT } from '../constants/messages/gameServer/login';
 
 export function requestLogin(username, password) {
   const data = { username, password };
