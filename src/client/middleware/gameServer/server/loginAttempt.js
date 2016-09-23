@@ -1,5 +1,6 @@
 import { browserHistory } from 'react-router';
 import * as actions from '../../../actions/loginActions';
+import * as client from '../../../actions/initClient';
 import debug from '../../../util/console';
 import { closeModal, displayModal } from '../../../actions/modalActions';
 import messages from '../../../constants/messages/gameServer';
@@ -10,6 +11,7 @@ export default (action, data, dispatch) => {
     if (data.code === 1) {
       dispatch(closeModal());
       dispatch(actions.loginSuccess(data));
+      dispatch(client.initGame(data, dispatch));
       browserHistory.push('/game');
     } else {
       dispatch(displayModal(

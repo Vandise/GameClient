@@ -1,26 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-export class GameContainer extends React.Component {
-  render() {
-    console.log(this.props.user);
-    return(
-      <div className='game-container'>
-        <h1>This is the game!</h1>
-      </div>
-    );
+export function gameHandler({ dispatch, state }) {
+  const client = state.client.client;
+  console.log('Rendering handler', client.isInitialized);
+  client.setPlayerData(state);
+  if (!client.isInitialized) {
+    client.initalize();
   }
+  return null;
 }
 
-GameContainer.propTypes = {
+gameHandler.propTypes = {
   dispatch: React.PropTypes.func,
   user: React.PropTypes.object,
 };
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    state
   };
 };
 
-export default connect(mapStateToProps)(GameContainer);
+export default connect(mapStateToProps)(gameHandler);

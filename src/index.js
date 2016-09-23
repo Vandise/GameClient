@@ -12,7 +12,7 @@ import gameContainer from './client/containers/gameContainer';
 // eslint-disable-next-line no-unused-vars
 import Styles from './stylesheets/main.scss';
 
-const el = document.getElementById('gameContainer');
+const el = document.getElementById('main');
 const store = gameStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
@@ -39,7 +39,7 @@ let routes = (
 
 ReactDOM.render(
   <Provider store={store}>
-    <div className="wrapper">
+    <div className="wrapper" id="gameContainer">
       <MessageModal />
       <Router history={history} routes={routes} />
     </div>

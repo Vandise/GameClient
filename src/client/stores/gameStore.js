@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { routerReducer } from 'react-router-redux';
+import clientReducer from '../reducers/clientReducer';
 import userReducer from '../reducers/userReducer';
 import serverReducer from '../reducers/serverReducer';
 import messageModalReducer from '../reducers/messageModalReducer';
@@ -17,6 +18,7 @@ const initialState = {
     message: null,
     options: [],
   },
+  client: null,
 };
 
 const reducers = combineReducers({
@@ -25,6 +27,7 @@ const reducers = combineReducers({
   routing: routerReducer,
   modal: messageModalReducer,
   gameServer: gameServerReducer,
+  client: clientReducer,
 });
 
 export default (state = initialState, cs = csMiddleware, gs = gsMiddleware) => {
