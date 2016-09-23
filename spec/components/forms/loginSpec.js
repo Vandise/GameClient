@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import gameStore from '../../helpers/storeHelper';
 import LoginForm from '../../../src/client/components/forms/login';
-import { LOGIN_ATTEMPT } from '../../../src/client/constants/actions';
+import { LOGIN_ATTEMPT } from '../../../src/client/constants/messages/gameServer';
 
 const setup = () => {
   gameStore.dispatch = sinon.spy();

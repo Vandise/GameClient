@@ -1,5 +1,5 @@
 import {
-  LOGIN_ATTEMPT, LOGIN_SUCCESS
+  LOGIN_ATTEMPT, LOGIN_SUCCESS,
 } from '../constants/messages/gameServer/login';
 
 export function requestLogin(username, password) {

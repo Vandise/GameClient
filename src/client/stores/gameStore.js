@@ -36,7 +36,7 @@ export default (state = initialState, cs = csMiddleware, gs = gsMiddleware) => {
   );
 
   store.subscribe(() => {
-    //console.log('Update Game State', store.getState());
+    // console.log('Update Game State', store.getState());
   });
 
   return store;

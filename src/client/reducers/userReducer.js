@@ -1,6 +1,6 @@
 import {
   LOGIN_ATTEMPT,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
 } from '../constants/messages/gameServer/login';
 
 const initialState = {

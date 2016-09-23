@@ -1,9 +1,7 @@
-import { INIT_GAME } from '../constants/client';
-import GameClient from '../game/game';
-
+import { INIT_GAME } from '../../src/client/constants/client';
 export function initGame(user, dispatch) {
   const payload = {
-    gameClient: GameClient,
+    gameClient: {},
     dispatch,
     user,
   };

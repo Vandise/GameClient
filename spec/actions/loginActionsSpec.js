@@ -1,4 +1,4 @@
-import * as types from '../../src/client/constants/actions';
+import * as types from '../../src/client/constants/messages/gameServer';
 import { requestLogin } from '../../src/client/actions/loginActions';
 
 describe('Login Actions', () => {

@@ -6,7 +6,8 @@ import jsdom from 'jsdom';
 const dom = jsdom.jsdom;
 const exposedProperties = ['window', 'navigator', 'document'];
 
-global.document = dom('');
+global.document = dom('<html><head></head><body><div id="gameContainer"></div></body></html>');
+
 global.window = document.defaultView;
 
 Object.keys(document.defaultView).forEach((property) => {

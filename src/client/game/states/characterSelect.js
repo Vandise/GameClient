@@ -9,7 +9,7 @@ export default class extends Phaser.State {
 
   preload() {
     debug('Preloading sprites');
-    const text = this.add.text(this.world.centerX, this.world.centerY, "Hello "+this.game.playerData.user.username, { font: '16px Arial', fill: '#dddddd', align: 'center' });
+    const text = this.add.text(this.world.centerX, this.world.centerY, 'Hello ' + this.game.playerData.user.username, { font: '16px Arial', fill: '#dddddd', align: 'center' });
     text.anchor.setTo(0.5, 0.5);
   }
 

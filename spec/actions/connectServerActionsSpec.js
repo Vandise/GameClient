@@ -1,5 +1,6 @@
 import * as types from '../../src/client/constants/messages/connectServer';
 import * as actions from '../../src/client/actions/connectServerActions';
+import * as clientConstants from '../../src/client/constants/client';
 
 describe('Connect Server Actions', () => {
   it('Creates an action to request a connection', () => {
@@ -28,5 +29,17 @@ describe('Connect Server Actions', () => {
       payload: host,
     };
     expect(actions.setActiveServers(host)).to.eql(expectedAction);
+  });
+  it('Creates an action to validate the current client version', () => {
+    const server = {
+      ip: 'local',
+      port: 1234,
+    };
+    const expectedAction = {
+      host: 'local',
+      port: 1234,
+      version: clientConstants.CLIENT_VERSION,
+    };
+    expect(actions.validateClientAttempt(server)).to.eql(expectedAction);
   });
 });
