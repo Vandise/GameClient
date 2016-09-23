@@ -1,17 +1,15 @@
-import { LOGIN_ATTEMPT } from '../constants/messages/gameServer/login';
+import {
+  LOGIN_ATTEMPT,
+  LOGIN_SUCCESS
+} from '../constants/messages/gameServer/login';
 
 const initialState = {
   username: null,
 };
 
 export default (state = initialState, action) => {
-  /*
-  switch (action.type) {
-    case LOGIN_ATTEMPT:
-      return Object.assign({}, state, action.data);
-    default:
-      return state;
+  if (action.type === LOGIN_SUCCESS) {
+    return Object.assign({}, state, action.user.user);
   }
-  */
   return state;
 };

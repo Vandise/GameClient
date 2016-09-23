@@ -1,7 +1,8 @@
 import debug from '../../../util/console';
+import loginAttempt from './loginAttempt';
 
 const events = [
-
+  loginAttempt,
 ];
 
 export default (socket, store, next, action) => (event, data) => {

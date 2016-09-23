@@ -7,6 +7,7 @@ import gameStore from './client/stores/gameStore';
 import MessageModal from './client/components/modals/messageModal';
 import loginForm from './client/components/forms/login';
 import serverSelect from './client/containers/serverSelect';
+import gameContainer from './client/containers/gameContainer';
 
 // eslint-disable-next-line no-unused-vars
 import Styles from './stylesheets/main.scss';
@@ -26,6 +27,11 @@ let routes = (
       path="/login"
       name="login"
       component={loginForm}
+    />
+    <Route
+      path="/game"
+      name="game"
+      component={gameContainer}
     />
   </Route>
 );
