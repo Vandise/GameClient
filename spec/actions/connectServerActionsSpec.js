@@ -40,6 +40,9 @@ describe('Connect Server Actions', () => {
       port: 1234,
       version: clientConstants.CLIENT_VERSION,
     };
-    expect(actions.validateClientAttempt(server)).to.eql(expectedAction);
+    expect(actions.validateClientAttempt(server)).to.eql({
+      type: types.VALIDATE_CLIENT_ATTEMPT,
+      payload: expectedAction,
+    });
   });
 });
