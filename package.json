@@ -55,7 +55,7 @@
     "react-router-redux": "^4.0.5",
     "redux": "^3.5.2",
     "redux-socket.io": "^1.2.0",
-    "redux-socket.io-middleware": "git+https://git@github.com:Vandise/redux-socket.io-middleware.git",
+    "redux-socket.io-middleware": "https://github.com/Vandise/redux-socket.io-middleware/archive/master.tar.gz",
     "redux-thunk": "^2.1.0",
     "sass-loader": "^3.1.1",
     "sinon": "^1.17.3",
