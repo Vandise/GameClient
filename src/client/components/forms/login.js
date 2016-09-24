@@ -7,7 +7,7 @@ import { connectGS } from '../../actions/gameServerActions';
 // eslint-disable-next-line no-unused-vars
 import Styles from '../../../stylesheets/components/forms/login.scss';
 
-export default class LoginForm extends React.Component {
+export class LoginForm extends React.Component {
 
   constructor(props) {
     super(props);
