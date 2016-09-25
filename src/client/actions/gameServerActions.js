@@ -16,3 +16,9 @@ export const connectGS = createAction(
     return payload;
   }
 );
+
+export const fetchCharacters = createAction(
+  'fetch_characters', (user) => {
+    return user;
+  }
+);

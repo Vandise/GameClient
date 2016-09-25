@@ -2,6 +2,7 @@ import 'pixi';
 import 'p2';
 import Phaser from 'phaser';
 import characterSelect from './states/characterSelect';
+import eventHandler from './events/EventHandler';
 
 export default class extends Phaser.Game {
 
@@ -11,6 +12,7 @@ export default class extends Phaser.Game {
     this.dispatch = dispatch;
     this.playerData = {};
     this.isInitialized = false;
+    this.eventHanlder = null;
     this.state.add('CharacterSelect', characterSelect, false);
   }
 
@@ -21,6 +23,7 @@ export default class extends Phaser.Game {
 
   initalize() {
     this.isInitialized = true;
+    this.eventHandler = new eventHandler({}, this);
     this.state.start('CharacterSelect');
   }
 }

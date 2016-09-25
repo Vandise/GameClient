@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import debug from '../../util/console';
+import { fetchCharacters } from '../../actions/gameServerActions';
 
 export default class extends Phaser.State {
 
@@ -15,6 +16,9 @@ export default class extends Phaser.State {
 
   create() {
     debug('render character select');
+    this.game.dispatch(fetchCharacters(
+      this.game.playerData.user
+    ));
     return true;
   }
 }

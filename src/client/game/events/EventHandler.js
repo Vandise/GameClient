@@ -1,7 +1,8 @@
 export default class EventHandler {
 
-  constructor(events = {}) {
+  constructor(events = {}, client = null) {
     this.events = events;
+    this.client = client;
     this.lastEvent = null;
   }
 
