@@ -12,7 +12,7 @@ export default class extends Phaser.Game {
     this.dispatch = dispatch;
     this.playerData = {};
     this.isInitialized = false;
-    this.eventHanlder = null;
+    this.eventHandler = null;
     this.state.add('CharacterSelect', characterSelect, false);
   }
 

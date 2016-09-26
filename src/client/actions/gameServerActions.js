@@ -22,3 +22,12 @@ export const fetchCharacters = createAction(
     return user;
   }
 );
+
+export const setCharacters = createAction(
+  'FETCH_CHARACTERS', (characters) => {
+    const payload = {
+      characters,
+    };
+    return payload;
+  }
+);

@@ -6,6 +6,7 @@ import userReducer from '../reducers/userReducer';
 import serverReducer from '../reducers/serverReducer';
 import messageModalReducer from '../reducers/messageModalReducer';
 import gameServerReducer from '../reducers/gameServerReducer';
+import charactersReducer from '../reducers/charactersReducer';
 import csMiddleware from '../middleware/connectServer';
 import gsMiddleware from '../middleware/gameServer';
 
@@ -28,6 +29,7 @@ const reducers = combineReducers({
   modal: messageModalReducer,
   gameServer: gameServerReducer,
   client: clientReducer,
+  characters: charactersReducer,
 });
 
 export default (state = initialState, cs = csMiddleware, gs = gsMiddleware) => {
