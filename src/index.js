@@ -8,6 +8,7 @@ import MessageModal from './client/components/modals/messageModal';
 import loginForm from './client/components/forms/login';
 import serverSelect from './client/containers/serverSelect';
 import gameContainer from './client/containers/gameContainer';
+import MenuContainer from './client/containers/menuContainer';
 
 // eslint-disable-next-line no-unused-vars
 import Styles from './stylesheets/main.scss';
@@ -40,6 +41,7 @@ let routes = (
 ReactDOM.render(
   <Provider store={store}>
     <div className="wrapper" id="gameContainer">
+      <MenuContainer />
       <MessageModal />
       <Router history={history} routes={routes} />
     </div>

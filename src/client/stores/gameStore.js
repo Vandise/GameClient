@@ -7,6 +7,7 @@ import serverReducer from '../reducers/serverReducer';
 import messageModalReducer from '../reducers/messageModalReducer';
 import gameServerReducer from '../reducers/gameServerReducer';
 import charactersReducer from '../reducers/charactersReducer';
+import menuReducer from '../reducers/menuReducer';
 import csMiddleware from '../middleware/connectServer';
 import gsMiddleware from '../middleware/gameServer';
 
@@ -20,6 +21,9 @@ const initialState = {
     options: [],
   },
   client: null,
+  menus: {
+    characterList: { open: true },
+  },
 };
 
 const reducers = combineReducers({
@@ -30,6 +34,7 @@ const reducers = combineReducers({
   gameServer: gameServerReducer,
   client: clientReducer,
   characters: charactersReducer,
+  menus: menuReducer,
 });
 
 export default (state = initialState, cs = csMiddleware, gs = gsMiddleware) => {
