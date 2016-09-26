@@ -22,7 +22,7 @@ const initialState = {
   },
   client: null,
   menus: {
-    characterList: { open: true },
+    characterList: { open: false },
   },
 };
 

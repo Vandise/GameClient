@@ -4,6 +4,4 @@ export default handleActions({
   FETCH_CHARACTERS: (state, action) => {
     return action.payload.characters;
   },
-}, {
-
-});
+}, []);

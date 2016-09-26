@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import debug from '../../util/console';
 import { fetchCharacters } from '../../actions/gameServerActions';
+import { setMenu } from '../../actions/menuActions';
 
 export default class extends Phaser.State {
 
@@ -19,6 +20,7 @@ export default class extends Phaser.State {
     this.game.dispatch(fetchCharacters(
       this.game.playerData.user
     ));
+    this.game.dispatch(setMenu('characterList', true));
     return true;
   }
 }

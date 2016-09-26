@@ -1,16 +1,21 @@
 .menuContainer {
   position: absolute;
   bottom: 25px;
-  left: 12.5%;
+  left: 10%;
   width: 75%;
   text-align: center;
 
   .characterList li {
+    position: relative;
     list-style-type: none;
     display: inline-block;
     width: 100px;
     height: 100px;
     border: 1px solid white;
     margin: 5px;
+    .characterSummary {
+      position: absolute;
+      bottom: 0;
+    }
   }
 }
