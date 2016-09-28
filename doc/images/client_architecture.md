@@ -1,4 +1,7 @@
 # Utilizing React and Redux to manage UI Components in Phaser.
+
+An understanding of unidirectional architecture "Flux", ReactJS, and Redux is implied. You can get a crash course about React and Redux [Here](http://redux.js.org/)
+
 Let me start by saying I am not the most versed with Phaser, in fact this is my first larger project aside from the provided tutorials and examples on the website. In all my previous projects I've always ran into the issue with forms, user input, and updating game state to reflect the changes. Such an example was a simple interactive game to navigate a finite amount of states and render a different scene to reflect the change -- potentially prompt a scenario where the user would utilze a previously found item. A popular approach to form management to engage and prompt a user for input is to structure the forms within the page and hide them by default -- eventually displaying the form through keybindings in Phaser and having javascript set a display attribute. This approach is doable and I could build my projects with webpack and ES6 without incident. Unit testing, however, became a major issue with validating the results of the user interaction. Headless browser testing with mocha and Phaser, due to limitations with Pixi, also became a struggle.
 
 ## Contents
@@ -48,6 +51,24 @@ The concept of middleware came to mind. In Redux middleware is initialized to ca
 
 There were no considerable packages to handle the specific needs of this project: so I created an extremely generic, but powerful middleware to handle multiple socket connections and provides easy testibility. [Redux Socket-IO Middleware](https://github.com/Vandise/redux-socket.io-middleware)
 
+```javascript
+// initial global state (for reference)
+const initialState = {
+  user: { username: null },
+  routing: {},
+  servers: {},
+  modal: {
+    closed: true,
+    message: null,
+    options: [],
+  },
+  client: null,
+  menus: {
+    characterList: { open: false },
+  },
+};
+```
+
 Through this middleware I was able to access the global state (including the client), dispatch events to update the UI, client state, and global state. For example I am able to construct various functions the middleware will pass a variety of parameters to that I could simply pass a mock socket to the middleware with mocha:
 
 ```javascript
@@ -79,7 +100,7 @@ it('Closes the message modal', () => {
 });
 ```
 
-With this extra automated layer, our client socket events turn out like this:
+With this extra automated layer, our client socket events from within Phaser turn out like this:
 
 ```javascript
 this.game.dispatch(fetchCharacters(
@@ -118,7 +139,7 @@ Like any other standard React components, we can bind user interaction to functi
 Of course the position of these components entirely depends on the styles applied to the classes. Simple CSS allows us to make these menus appear how we see fit.
 
 ## Known Architecture Issues
-Like all patterns and architectures, there are known issues with this approach. The main companint being:
+Like all patterns and architectures, there are known issues with this approach. The main complaint being:
 
 - It's a lot of code to mask the sockets
 
@@ -134,3 +155,9 @@ Phaser, in this sense, does what it's intended to do: render sprites and apply a
 ## Does This Work With Non Multiplayer Games
 Absolutely.
 The flow of your game with this architecture entirely depends on the middleware. It's the heart and soul of this architecture. You cannot use the middleware I've provided as it's socket-io specific. It's only a single file though and you could use it as a guideline to designing your own middleware. In this specific case, you would only need to handle dispatcher messages that would go to either the phaser event handler or directly to the reducer. 
+
+## Conclusion
+So far this architecture has been wildly successful with this current game project I've been implementing. Absolutely no drawbacks, revisiting the middleware / directory structures, or how I've begun implementing the game. This project did have 100% code coverage and only a couple reported issues from code climate for the longest time. Due to my limited time I haven't been able to be as thorough with my commitment to testing every aspect and following my linter rules. Looking through what code climate reports back, I already have similar tests implemented for other aspects of the project that are lacking coverage. From this I can happily conclude that this architecture offers an environment in which Phaser events can be tested through a headless browser.
+
+I'm still developing this project and this readme will be updated as any issues arise with the architecture.
+
