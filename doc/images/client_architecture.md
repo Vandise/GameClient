@@ -6,6 +6,7 @@ Let me start by saying I am not the most versed with Phaser, in fact this is my 
 - [Philosophy](#philosophy)
 - [The Project](#the-project)
 - [Masking The Sockets](#socket-middleware)
+- [UI Components and Phaser](#ui-components)
 
 ## Architecture
 ![Client Arch](https://github.com/Vandise/GameClient/blob/master/doc/images/client_arch.png)
@@ -83,5 +84,34 @@ this.game.dispatch(fetchCharacters(
 ));
 this.game.dispatch(setMenu('characterList', true));
 ```
+
+## UI Components
+Like any other standard React components, we can bind user interaction to functions within our components that can *dispatch* an action. These actions can be mapped to the *socket middleware* and send a message to the client and generally get a response from the server to update some sort of state, update the global redux state, or even the phaser state (through the middleware) if required. For brevity a short example requesting the user login through a login form would send an event to the socket middleware and get a server response saying the login was successful or failed. We can then dispatch a new state or keep the current state based on this scenario.
+
+```javascript
+...
+  loginAttempt() {
+    const username = ReactDOM.findDOMNode(this.refs.account).value;
+    const password = ReactDOM.findDOMNode(this.refs.password).value;
+    this.props.dispatch(
+      loginActions.requestLogin(username, password)
+    );
+  }
+  render() {
+    ... inputs here
+    <div className="user-actions">
+      <a
+        id="login"
+        className="button red"
+        onClick={this.loginAttempt}
+      >Ok
+      </a>
+      <a to="/" className="button red">Cancel</a>
+    </div>
+    ...
+  }
+```
+
+Of course the position of these components entirely depends on the styles applied to the classes. Simple CSS allows us to make these menus appear how we see fit.
 
 
