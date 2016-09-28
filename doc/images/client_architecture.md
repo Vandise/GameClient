@@ -13,6 +13,7 @@ Let me start by saying I am not the most versed with Phaser, in fact this is my 
 - [Known Architecture Issues](#known-architecture-issues)
 - [What Role Does Phaser Play In All This](#what-role-does-phaser-play-in-all-this)
 - [Does This Work With Non Multiplayer Games](#does-this-work-with-non-multiplayer-games)
+- [Conclusion](#conclusion)
 
 ## Architecture
 ![Client Arch](https://github.com/Vandise/GameClient/blob/master/doc/images/client_arch.png)
