@@ -7,6 +7,9 @@ Let me start by saying I am not the most versed with Phaser, in fact this is my 
 - [The Project](#the-project)
 - [Masking The Sockets](#socket-middleware)
 - [UI Components and Phaser](#ui-components)
+- [Known Architecture Issues](#known-architecture-issues)
+- [What Role Does Phaser Play In All This](#what-role-does-phaser-play-in-all-this)
+- [Does This Work With Non Multiplayer Games](#does-this-work-with-non-multiplayer-games)
 
 ## Architecture
 ![Client Arch](https://github.com/Vandise/GameClient/blob/master/doc/images/client_arch.png)
@@ -114,4 +117,20 @@ Like any other standard React components, we can bind user interaction to functi
 
 Of course the position of these components entirely depends on the styles applied to the classes. Simple CSS allows us to make these menus appear how we see fit.
 
+## Known Architecture Issues
+Like all patterns and architectures, there are known issues with this approach. The main companint being:
 
+- It's a lot of code to mask the sockets
+
+To be fair updating a global state or game state and handling user events to send to the server (such as character walking) is a lot for a single socket wrapper function to handle. These functions need to be isolated to be effectively tested. I don't use the term "over-engineered" lightly, but it is a fair claim. It serves one general purpose and it does it well if the implementation described in the readme is followed. Otherwise you may have a problem.
+
+- We cannot validate events actually emitted from within Phaser *kind of*
+
+If you have the "I" key bound to open the inventory menu within Phaser -- I have no way to validate that the "I" key is bound to the inventory menu. I can, however, validate that after the "I" key is pressed, the action it dispatches will indeed open the inventory menu. Phaser is entirely bypassed in this case and is only mocked in the unit tests when server events are being sent to the event handler. 
+
+## What Role Does Phaser Play In All This
+Phaser, in this sense, does what it's intended to do: render sprites and apply a physics/partical engine to the canvas. Canvas objects that interact with one another can send events, and events received, such as a player moved, can cause phaser to redraw/animate a sprite. Adding the multiplayer option just adds a level of complexity. 
+
+## Does This Work With Non Multiplayer Games
+Absolutely.
+The flow of your game with this architecture entirely depends on the middleware. It's the heart and soul of this architecture. You cannot use the middleware I've provided as it's socket-io specific. It's only a single file though and you could use it as a guideline to designing your own middleware. In this specific case, you would only need to handle dispatcher messages that would go to either the phaser event handler or directly to the reducer. 
